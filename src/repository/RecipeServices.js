@@ -117,23 +117,22 @@ class RecipeServices {
         return recipes;
       }
     getFavorite= async(req, res, next)=>{
-        const { page }=req.body;
+        const { page,limit }= req.query;
         const recipes= await recipeModel.aggregate([
             {
                 $addFields: { favorites_size: {$size: { "$ifNull": [ "$favorites", [] ] } } }
             }, 
             {   
                 $sort: {"favorites_size": -1 } 
-            }
-            ,
-            { $limit: 8 },
-            { $skip: (page - 1) * 8 }
+            },
+            { $limit: limit },
+            { $skip: (page - 1) * limit }
         ])
         return recipes;
     }
     getNew = async(req,res,next) => {
-        const { page }=req.body;
-        const recipes= await recipeModel.find({}).sort({ createdAt: -1}).skip((page - 1) * 88).limit(8);
+        const { page,limit }=req.body;
+        const recipes= await recipeModel.find({}).sort({ createdAt: -1}).skip((page - 1) * limit).limit(limit);
         return recipes;
     }
   

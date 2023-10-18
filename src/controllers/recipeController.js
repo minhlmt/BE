@@ -163,16 +163,30 @@ class RecipeController {
         res.json(recipes);
       };
     getFavorite = async (req, res) => {
-        const recipeFavorite = await RecipeServices.getFavorite(req, res);
-        return res.status(200).json({
-            data: recipeFavorite
-        })
+        try {
+            const recipeFavorite = await RecipeServices.getFavorite(req, res);
+            return res.status(200).json({
+                data: recipeFavorite,
+                success:true
+            })
+            
+        } catch (error) {
+            return res.status(500).json({ status: false, error: "Error Occurred" });
+        }
+      
     };
     getNew = async (req, res) => {
-        const recipeNew = await RecipeServices.getNew(req,res);
-        return res.status(200).json({
-            data: recipeNew
-        })
+        try {
+            const recipeNew = await RecipeServices.getNew(req,res);
+            return res.status(200).json({
+                data: recipeNew,
+                success : true
+            })
+        } catch (error) {
+            return res.status(500).json({ status: false, error: "Error Occurred" });
+            
+        }
+     
         
     };
 

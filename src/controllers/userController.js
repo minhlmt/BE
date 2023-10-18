@@ -271,15 +271,15 @@ class UserController {
         }
     }
     getTopChief = async (req,res) => {
-        console.log("test ",req)
         try {
             const topChief= await UserService.getTopChief(req,req);
             return res.status(200).send({
-                data: topChief
+                data: topChief,
+                success:true
             });
 
         } catch (error) {
-            return res.status(500).json({ message: error.toString() });
+            return res.status(500).json({ message: error.toString() ,success:false});
         }
     }
 }
