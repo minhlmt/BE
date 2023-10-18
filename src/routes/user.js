@@ -4,7 +4,7 @@ import middlewareController from "../controllers/middlewareController.js";
 const userRouter = express.Router();
 import UserController from '../controllers/userController.js'
 
-userRouter.get('/topChief', UserController.getTopChief);
+userRouter.get('/top_chief', UserController.getTopChief);
 
 userRouter.get('/', UserController.getAll);
 userRouter.get('/:id', UserController.getUserID);

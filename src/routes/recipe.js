@@ -9,6 +9,7 @@ recipeRouter.get('/country',recipeController.getAllCountry)
 recipeRouter.get('/common',recipeController.getAllCommon)
 recipeRouter.post('/common',recipeController.createCommon)
 recipeRouter.get('/recipe_favorite', recipeController.getFavorite)
+recipeRouter.get('/recipe_new', recipeController.getNew)
 
 
 recipeRouter.get('/:id',recipeController.getrecipeByID)
