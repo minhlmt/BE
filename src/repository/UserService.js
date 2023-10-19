@@ -151,7 +151,7 @@ class RecipeController {
     getTopChief = async (req, res, next) => {
         try {
             const topChief = await userModel.aggregate([
-                { $match : { role: 'user'} },
+                { $match : { role: 'chief'} },
                 { $addFields : { 
                     followers_size :{
                         $size :{

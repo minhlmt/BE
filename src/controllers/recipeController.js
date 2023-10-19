@@ -149,7 +149,7 @@ class RecipeController {
   };
   getFavorite = async (req, res) => {
     try {
-      const recipeFavorite = await RecipeServices.getFavorite(req, res);
+      const recipeFavorite = await RecipeServices.getFavorite(req, res)
       console.log(res)
       const size = await recipeModel.find({});
       return res.status(200).json({
@@ -168,7 +168,7 @@ class RecipeController {
       const size = await recipeModel.find({});
       return res.status(200).json({
         data: recipeNew,
-        user_id:req.user._id,
+     
         size: size.length,
         success: true,
       });
