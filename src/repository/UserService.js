@@ -152,17 +152,26 @@ class RecipeController {
         try {
             const topChief = await userModel.aggregate([
                 { $match : { role: 'user'} },
-                { $addFields : { followers_size :{
+                { $addFields : { 
+                    followers_size :{
+                        $size :{
+                            $ifNull:[
+                                "$followers",[]
+                            ]
+                        },
+                        
+                },
+                recipe_size :{
                     $size :{
                         $ifNull:[
-                            "$followers",[]
+                            "$ownerRecipes",[]
                         ]
-                    }
-                }}},
+                    },
+                    
+                 }}},
                 { $sort: { followers_size : -1} },
                 { $limit : 9}
             ])
-        console.log("test",topChief)
             return topChief;
             
         } catch (error) {
